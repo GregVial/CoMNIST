@@ -1,6 +1,6 @@
 # CoMNIST
 
-[!logo.png]
+![logo](logo.png)
 
 ## Cyrillic open-source MNIST
 
