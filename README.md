@@ -1,4 +1,7 @@
 # CoMNIST
+
+[!logo.png]
+
 ## Cyrillic open-source MNIST
 
 A list of 32*32 images representing all 33 russian alphabet letters. The 26 latin letters are also available.
