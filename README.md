@@ -3,7 +3,7 @@
 
 A list of 32*32 images representing all 33 russian alphabet letters. The 26 latin letters are also available.
 
-These images have been crowd-sourced thanks to the great web-design available on [Anna Migushina's github](https://github.com/migusta/coMNIST).
+These images have been crowd-sourced thanks to the great web-design by Anna Migushina available on her [github](https://github.com/migusta/coMNIST).
 
 Find out more about CoMNIST on my [blog](http://ds.gregvi.al)
 
