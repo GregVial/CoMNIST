@@ -1,4 +1,4 @@
-<img src="logo.png" height="120">
+<img src="logo.png" height="150">
 
 ## Cyrillic-oriented MNIST
 
