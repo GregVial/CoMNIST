@@ -15,8 +15,11 @@ Ability to submit an expected word and get back the original image with mismtach
 
 ### Participate
 The objective is to gather 2000 images of each class, therefore your contribution is more that welcome!
+
 [English version](http://comnist.gregvi.al) - Draw latin only + common to cyrillic and latin
+
 [French version](http://comnist.gregvi.al/?fr) - Draw latin only + common to cyrillic and latin
+
 [Russian version](http://comnist.gregvi.al/?ru) - Draw cyrillic only
 
 Find out more about CoMNIST on my [blog](http://ds.gregvi.al/2017/02/28/CoMNIST/)

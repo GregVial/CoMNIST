@@ -1,5 +1,5 @@
-Muriel
-Julien Figel
-Maé
-Daniel Carter
-Yaël
+Muriel,
+Julien Figel,
+Maé,
+Daniel Carter,
+Yaël,
