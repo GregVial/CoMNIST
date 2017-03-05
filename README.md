@@ -9,6 +9,8 @@ The [images](images/) are split into sub directories:
 * Latin only: the 14 letters unique to latin
 * Cyrillic and latin: 12 letters that both alphabet have in common (even if their meaning and/or pronounciation is different)
 
+*The full dataset (50,000+ images, at least 2000 for each class) will be made available on May, 1st 2017*
+
 ### Coming up soon!
 A web service that reads drawing and identify the word/letter you have drawn.
 Ability to submit an expected word and get back the original image with mismtaches highlighted (for educational purposes)
