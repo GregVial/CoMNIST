@@ -12,11 +12,11 @@ The [images](images/) are split into sub directories:
 *The full dataset (50,000+ images, at least 1000 for each class) will be made available on May, 1st 2017*
 
 ### Coming up soon!
-A web service that reads drawing and identify the word/letter you have drawn.
+A web service that reads drawing and identifies the word/letter you have drawn.
 Ability to submit an expected word and get back the original image with mismtaches highlighted (for educational purposes)
 
 ### Participate
-The objective is to gather at least 1000 images of each class, therefore your contribution is more that welcome! One minute is enough, and don't hesitate to ask your friends and family to participate as well.
+The objective is to gather at least 1000 images of each class, therefore your contribution is more that welcome! One minute of your time is enough, and don't hesitate to ask your friends and family to participate as well.
 
 [English version](http://comnist.gregvi.al) - Draw latin only + common to cyrillic and latin
 
