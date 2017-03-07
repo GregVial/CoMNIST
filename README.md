@@ -1,4 +1,4 @@
-<img src="logo.png" height="150">
+<img src="misc/logo.png" height="150">
 
 ## Cyrillic-oriented MNIST
 
@@ -28,7 +28,7 @@ Find out more about CoMNIST on my [blog](http://ds.gregvi.al/2017/02/28/CoMNIST/
 
 ### Credits and license
 
-Thanks to all our [contributors](contributors.md)!
+Thanks to all our [contributors](misc/contributors.md)!
 
 These images have been crowd-sourced thanks to the great web-design by Anna Migushina available on her [github](https://github.com/migusta/coMNIST).
 
