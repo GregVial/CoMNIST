@@ -2,14 +2,9 @@
 
 ## Cyrillic-oriented MNIST
 
-A list of 278x278 png images representing all 33 russian alphabet letters and the 26 letters of the latin alphabet.
+A list of 278x278 png images representing all 33 letters of the [russian alphabet](images/Cyrillic.zip) and the 26 letters of the [latin alphabet](images/Latin.zip).
 
-The [images](images/) are split into sub directories:
-* Cyrillic only: the 21 letters unique to cyrillic
-* Latin only: the 14 letters unique to latin
-* Cyrillic and latin: 12 letters that both alphabet have in common (even if their meaning and/or pronounciation is different)
-
-*The full dataset (50,000+ images, at least 1000 for each class) will be made available on May, 1st 2017*
+*The dataset will be regularly extended with more data as the collection progresses*
 
 ### Coming up soon!
 A web service that reads drawing and identifies the word/letter you have drawn.
