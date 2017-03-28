@@ -2,7 +2,10 @@
 
 ## Cyrillic-oriented MNIST
 
-A list of 278x278 png images representing all 33 letters of the [russian alphabet](images/Cyrillic.zip) and the 26 letters of the [latin alphabet](images/Latin.zip).
+<b>A repository of images of hand-written Cyrillic and Latin alphabet letters for machine learning applications.</b>
+
+The repository currently consists of 20,000+ 278x278 png images representing all 33 letters of the [Russian alphabet](images/Cyrillic.zip) and the 26 letters of the [English alphabet](images/Latin.zip).
+These images have been hand-written on touch screen through crowd-sourcing.
 
 *The dataset will be regularly extended with more data as the collection progresses*
 
@@ -13,17 +16,17 @@ Ability to submit an expected word and get back the original image with mismtach
 ### Participate
 The objective is to gather at least 1000 images of each class, therefore your contribution is more that welcome! One minute of your time is enough, and don't hesitate to ask your friends and family to participate as well.
 
-[English version](http://comnist.gregvi.al) - Draw latin only + common to cyrillic and latin
+[English version](http://comnist.gregvi.al) - Draw Latin only + common to cyrillic and latin
 
-[French version](http://comnist.gregvi.al/?fr) - Draw latin only + common to cyrillic and latin
+[French version](http://comnist.gregvi.al/?fr) - Draw Latin only + common to cyrillic and latin
 
-[Russian version](http://comnist.gregvi.al/?ru) - Draw cyrillic only
+[Russian version](http://comnist.gregvi.al/?ru) - Draw Cyrillic only
 
 Find out more about CoMNIST on my [blog](http://ds.gregvi.al/2017/02/28/CoMNIST/)
 
 ### Credits and license
 
-Thanks to all our [contributors](misc/contributors.md)!
+A big thanks to all the [contributors](misc/contributors.md)!
 
 These images have been crowd-sourced thanks to the great web-design by Anna Migushina available on her [github](https://github.com/migusta/coMNIST).
 
