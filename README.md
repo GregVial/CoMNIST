@@ -2,6 +2,7 @@
 
 ## Cyrillic-oriented MNIST
 
+### CoMNIST services
 <b>A repository of images of hand-written Cyrillic and Latin alphabet letters for machine learning applications.</b>
 
 The repository currently consists of 20,000+ 278x278 png images representing all 33 letters of the [Russian alphabet](images/Cyrillic.zip) and the 26 letters of the [English alphabet](images/Latin.zip).
@@ -9,9 +10,29 @@ These images have been hand-written on touch screen through crowd-sourcing.
 
 *The dataset will be regularly extended with more data as the collection progresses*
 
-### Coming up soon!
-A web service that reads drawing and identifies the word/letter you have drawn.
-Ability to submit an expected word and get back the original image with mismtaches highlighted (for educational purposes)
+<b> An API that reads words in images</b>
+
+CoMNIST also makes available a web service that reads drawing and identifies the word/letter you have drawn.
+On top of an image you can submit an expected word and get back the original image with mismtaches highlighted (for educational purposes)
+
+The API is available at this address: http://35.187.34.5:5002/api/word
+It is accessible via a POST request with following input expected:
+```
+{
+    'img': Mandatory b64 encoded image, with letters in black on a white background
+    'word': Optional string, the expected word to be read
+    'lang': Mandatory string, either 'en' or 'ru', respectively for Latin or Cyrillic (russian) alphabets
+    'nb_output': Mandatory integer, the "tolerance" of the engine
+}
+```
+
+The return information is the following:
+```
+{
+    'img': b64 encoded image, if a word was supplied as an input, then modified version of that image highlighting mismatches
+    'word': string, the word that was read by the API
+}
+```
 
 ### Participate
 The objective is to gather at least 1000 images of each class, therefore your contribution is more that welcome! One minute of your time is enough, and don't hesitate to ask your friends and family to participate as well.
