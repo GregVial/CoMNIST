@@ -5,7 +5,7 @@
 ### CoMNIST services
 <b>A repository of images of hand-written Cyrillic and Latin alphabet letters for machine learning applications.</b>
 
-The repository currently consists of 20,000+ 278x278 png images representing all 33 letters of the [Russian alphabet](images/Cyrillic.zip) and the 26 letters of the [English alphabet](images/Latin.zip).
+The repository currently consists of 28,000+ 278x278 png images representing all 33 letters of the [Russian alphabet](images/Cyrillic.zip) and the 26 letters of the [English alphabet](images/Latin.zip).
 These images have been hand-written on touch screen through crowd-sourcing.
 
 *The dataset will be regularly extended with more data as the collection progresses*
