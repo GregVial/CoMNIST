@@ -8,15 +8,13 @@
 The repository currently consists of 28,000+ 278x278 png images representing all 33 letters of the [Russian alphabet](images/Cyrillic.zip) and the 26 letters of the [English alphabet](images/Latin.zip).
 These images have been hand-written on touch screen through crowd-sourcing.
 
-*The dataset will be regularly extended with more data as the collection progresses*
-
 <b> An API that reads words in images</b>
 
 CoMNIST also makes available a web service that reads drawing and identifies the word/letter you have drawn.
 On top of an image you can submit an expected word and get back the original image with mismtaches highlighted (for educational purposes)
 
-The API is available at this address: http://35.187.34.5:5002/api/word
-It is accessible via a POST request with following input expected:
+The API's code is available in this github repo.
+Once the service is started you can access it via a POST request with following input expected:
 ```
 {
     'img': Mandatory b64 encoded image, with letters in black on a white background
@@ -49,8 +47,7 @@ Find out more about CoMNIST on my [blog](http://ds.gregvi.al/2017/02/28/CoMNIST/
 
 A big thanks to all the [contributors](misc/contributors.md)!
 
-These images have been crowd-sourced thanks to the great web-design by Anna Migushina available on her [github](https://github.com/migusta/coMNIST).
+These images have been crowd-sourced thanks to the web page developed by Anna Migushina available on [github](https://github.com/migusta/coMNIST).
 
-CoMNIST logo by [Sophie Valenina](http://www.facebook.com/pg/catandtonicdesigns)
-
+CoMNIST logo by Sophie Valenina
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CoMNIST</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/GregVial/CoMNIST" property="cc:attributionName" rel="cc:attributionURL">Gregory Vial</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
