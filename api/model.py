@@ -3,7 +3,12 @@
 import os
 import string
 import numpy as np
-from keras.layers import Dense, Convolution2D, Activation, MaxPooling2D, Dropout, Flatten
+from keras.layers import (
+    Dense,
+    Convolution2D,
+    MaxPooling2D,
+    Flatten,
+)
 from keras.models import Sequential
 
 from image_proc import crop_resize, pad_resize, crop_letters
@@ -13,7 +18,8 @@ SIZE = 32
 
 INF = 10**9
 
-def load_model(weight=None, nb_classes = 26):
+
+def load_model(weight=None, nb_classes=26):
     """Get the convolutional model to be used to read letters
 
     :param weight: string
@@ -43,26 +49,28 @@ def load_model(weight=None, nb_classes = 26):
     # create model
     model = Sequential()
 
-    model.add(Convolution2D(nb_filters,
-                            (kernel_size[0], kernel_size[1]),
-                            padding='valid',
-                            input_shape=input_shape,
-                            activation='relu'))
-    model.add(Convolution2D(nb_filters2,
-                            (kernel_size[0], kernel_size[1]),
-                            activation='relu'))
+    model.add(
+        Convolution2D(
+            nb_filters,
+            (kernel_size[0], kernel_size[1]),
+            padding="valid",
+            input_shape=input_shape,
+            activation="relu",
+        )
+    )
+    model.add(
+        Convolution2D(nb_filters2, (kernel_size[0], kernel_size[1]), activation="relu")
+    )
     model.add(MaxPooling2D(pool_size=pool_size))
 
-    model.add(Convolution2D(nb_filters3,
-                            (kernel_size[0], kernel_size[1]),
-                            activation='relu'))
+    model.add(
+        Convolution2D(nb_filters3, (kernel_size[0], kernel_size[1]), activation="relu")
+    )
     model.add(MaxPooling2D(pool_size=pool_size))
 
     model.add(Flatten())
-    model.add(Dense(512,
-                     activation='relu'))
-    model.add(Dense(256,
-                     activation='relu'))
+    model.add(Dense(512, activation="relu"))
+    model.add(Dense(256, activation="relu"))
 
     model.add(Dense(nb_classes))
 
@@ -71,13 +79,13 @@ def load_model(weight=None, nb_classes = 26):
         model.load_weights(weight)
 
     # Compile model (required to make predictions)
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
     print("Created model and loaded weights from file")
 
     return model
 
 
-def load_letter_predictor(weight=None, nb_classes=26, lang_in = 'en', nb_output=1):
+def load_letter_predictor(weight=None, nb_classes=26, lang_in="en", nb_output=1):
     """Create a function that will classify images to letters
 
     :param weight: string
@@ -91,12 +99,12 @@ def load_letter_predictor(weight=None, nb_classes=26, lang_in = 'en', nb_output=
     """
 
     model = load_model(weight, nb_classes)
-    if lang_in == 'en':
+    if lang_in == "en":
         LETTERS = string.ascii_uppercase
-    elif lang_in == 'ru':
-        LETTERS = u'IАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+    elif lang_in == "ru":
+        LETTERS = "IАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
 
-    def letter_predictor(img,nb_output):
+    def letter_predictor(img, nb_output):
         """Reshape and resize images before classifying
 
         :param img: PIL.Image
@@ -124,7 +132,7 @@ def load_letter_predictor(weight=None, nb_classes=26, lang_in = 'en', nb_output=
     return letter_predictor
 
 
-def load_word_predictor(weight=None, nb_classes=26, lang_in = 'en'):
+def load_word_predictor(weight=None, nb_classes=26, lang_in="en"):
     """Create a function that will convert images to words
 
     :param weight: string
@@ -148,17 +156,17 @@ def load_word_predictor(weight=None, nb_classes=26, lang_in = 'en'):
         :return: string
             the word represented by the image
         """
-        word = np.empty((100,nb_output),dtype=object)
+        word = np.empty((100, nb_output), dtype=object)
         nb_letters = 0
-        for i,letter in enumerate(crop_letters(img)):
-            letters = letter_predictor(letter,nb_output)
+        for i, letter in enumerate(crop_letters(img)):
+            letters = letter_predictor(letter, nb_output)
             nb_letters += 1
             # Deal with exception of letter Ы
             # which is possibly made of two distinct blocks
-            if lang_in == 'ru' and letters[0] == 'I':
-                letter = u'Ы'
+            if lang_in == "ru" and letters[0] == "I":
+                letter = "Ы"
                 try:
-                    word = word[:-1,:]
+                    word = word[:-1, :]
                     nb_letters -= 1
                 except Exception as e:
                     pass

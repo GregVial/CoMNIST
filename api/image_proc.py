@@ -2,13 +2,14 @@
 
 from base64 import b64encode, b64decode
 from io import BytesIO
-
-import numpy as np
-from PIL import Image, ImageOps
 from difflib import SequenceMatcher
 import re
+import numpy as np
+from PIL import Image, ImageOps
+
 
 import image_disp
+
 
 def load(imfile="Greg.png"):
     """
@@ -50,6 +51,7 @@ def next_position(im, start_position=0, blank=True, horizontal=True):
         next_lim = np.argmax(intensity > 0)
     return start_position + next_lim
 
+
 def last_position(im, start_position=0, blank=True, horizontal=True):
     """
     Helper function
@@ -67,7 +69,7 @@ def last_position(im, start_position=0, blank=True, horizontal=True):
         next_lim = np.argmax(inverted_intensity == 0)
     else:
         next_lim = np.argmax(inverted_intensity > 0)
-    return start_position + (len(inverted_intensity) - next_lim )
+    return start_position + (len(inverted_intensity) - next_lim)
 
 
 def get_contours(im):
@@ -83,7 +85,7 @@ def get_contours(im):
     next_lim, right_lim = 0, 0
     i = 0
 
-    # horizontal_countours   
+    # horizontal_countours
     while (next_lim < len(intensity_h)) & (i < max_nb_letters):
         left_lim = next_position(im, next_lim, blank=False)
         # we have reached the last letter followed by blank
@@ -103,7 +105,7 @@ def get_contours(im):
     # Reduce the box size to the number of letters
     boxes = boxes[:i, :]
 
-    # vertical_countours   
+    # vertical_countours
     for j in range(boxes.shape[0]):
         left_lim = boxes[j, 0]
         right_lim = boxes[j, 2]
@@ -173,9 +175,9 @@ def get_space_loc(diff, miss, length):
 
 
 def crop_letters(im):
-    """Crop letters according to get_contours
-    """
+    """Crop letters according to get_contours"""
     return [pad_resize(im.crop(contour), -1) for contour in get_contours(im)]
+
 
 def img_to_b64(img):
     """
@@ -188,7 +190,7 @@ def img_to_b64(img):
     img_bytes = in_mem_file.read()
 
     base64_encoded_result_bytes = b64encode(img_bytes)
-    base64_encoded_result_str = base64_encoded_result_bytes.decode('ascii')
+    base64_encoded_result_str = base64_encoded_result_bytes.decode("ascii")
     return base64_encoded_result_str
 
 
@@ -201,10 +203,10 @@ def b64_to_img(img64):
 
 
 def crop_resize(im, size=32):
-    """ 
+    """
     Crops image to remove as much whitespace as possible
     If size is set to anything greater than 0, resize the image to a square
-    
+
     Returns: an image object of the desized size
     """
 
@@ -216,14 +218,18 @@ def crop_resize(im, size=32):
 
     # Compute vertical limits
     v_min = np.max([0, np.argmax(intensity_v > 0)])
-    v_max = np.min([len(intensity_v) - np.argmax(intensity_v[::-1] > 0) - 1, len(intensity_v)])
+    v_max = np.min(
+        [len(intensity_v) - np.argmax(intensity_v[::-1] > 0) - 1, len(intensity_v)]
+    )
 
     # Compute horizontal intensity
     intensity_h = get_intensity(im)
 
     # Compute horizontal limits
     h_min = np.max([0, np.argmax(intensity_h > 0)])
-    h_max = np.min([len(intensity_h) - np.argmax(intensity_h[::-1] > 0) - 1, len(intensity_h)])
+    h_max = np.min(
+        [len(intensity_h) - np.argmax(intensity_h[::-1] > 0) - 1, len(intensity_h)]
+    )
 
     img = im.crop(box=(h_min, v_min, h_max, v_max))
 
@@ -234,10 +240,10 @@ def crop_resize(im, size=32):
 
 
 def pad_resize(im, size=32):
-    """ 
+    """
     Adds white margins to image to make it square
     If size is set to anything greater than 0, resizes the image
-    
+
     Returns: an image object of the desized size
     """
 
@@ -254,10 +260,10 @@ def pad_resize(im, size=32):
 
     if height > width:
         # letter is wide
-        new_npim[:, stride:stride + width] = npim
+        new_npim[:, stride : stride + width] = npim
     elif width > height:
         # letter is high
-        new_npim[stride:stride + height, :] = npim
+        new_npim[stride : stride + height, :] = npim
     else:
         new_npim = npim
 
@@ -266,8 +272,9 @@ def pad_resize(im, size=32):
 
     if size > 0:
         img = img.resize((size, size))
-    #plt.imshow(img);plt.show()
+    # plt.imshow(img);plt.show()
     return img
+
 
 def score_word(word_in, words_out, img):
     """Compares expected word and read word, flag discrepancies
@@ -285,13 +292,13 @@ def score_word(word_in, words_out, img):
     correct = 0
 
     # Get the most likely word
-    word_out = ''.join(list(words_out[:,0]))
+    word_out = "".join(list(words_out[:, 0]))
 
     # Handle case with expected/predicted of equal length
     diff = np.zeros(len(word_out))
     if len(word_in) == len(word_out):
         for i in range(len(word_in)):
-            options = ''.join(list(words_out[i,:]))
+            options = "".join(list(words_out[i, :]))
             if word_in[i] not in options:
                 diff[i] = 1
         # If discrepancies exist, gray out wrong letters
@@ -311,11 +318,11 @@ def score_word(word_in, words_out, img):
             low_miss = match[i][0]
             low_diff = match[i][1]
             high = match[i][2]
-            diff[low_diff:low_diff + high] = 0
-            miss[low_miss:low_miss + high] = 0
+            diff[low_diff : low_diff + high] = 0
+            miss[low_miss : low_miss + high] = 0
 
         # Draw contours
-        #img = image_disp.draw_contours(img)
+        # img = image_disp.draw_contours(img)
 
         # Gray out wrong letters
         img = image_disp.gray_out_letter(img, *np.where(diff == 1))
@@ -326,6 +333,7 @@ def score_word(word_in, words_out, img):
 
     return img, correct
 
+
 def b64_remove_header(im):
     """Removes the b64 header
 
@@ -333,9 +341,10 @@ def b64_remove_header(im):
     :return: b64 img without b64 header
     """
     img = im
-    if (img[:4] == "data"):
-        img = re.sub(r'data:image/[^;]+;base64,', r'', img)
+    if img[:4] == "data":
+        img = re.sub(r"data:image/[^;]+;base64,", r"", img)
     return img
+
 
 def b64_preprocess(im):
     """Converts b64 image to Image and ensure it has proper background/properties
@@ -349,7 +358,7 @@ def b64_preprocess(im):
 
     # Add a white background to the image
     try:
-        blank = Image.new('L', img.size, color=255)
+        blank = Image.new("L", img.size, color=255)
         img.paste(blank, (0, 0), mask=img)
         img = img.convert("L")
     except Exception as e:
@@ -357,7 +366,7 @@ def b64_preprocess(im):
 
     # Get negative of image in case it is white on black
     img_np = np.array(img)
-    if (np.mean(img_np) < 128):
+    if np.mean(img_np) < 128:
         img = ImageOps.invert(img)
         print("Inverted image")
     return img
